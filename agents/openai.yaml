@@ -1,0 +1,4 @@
+interface:
+  display_name: "Y2K 白底像素手绘"
+  short_description: "五官与全图使用统一像素笔触，保留表情与画幅，配松散涂色和微型贴图"
+  default_prompt: "用 $y2k-pixel-doodle 按原图尺寸转绘白底像素涂鸦，五官、轮廓、背景和小贴图共用同一像素笔与抖动尺度，保留表情，涂色松散，突出主体。"
