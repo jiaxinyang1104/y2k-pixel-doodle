@@ -10,10 +10,6 @@ It works with portraits, pets, objects, architecture, and landscapes. You can as
 
 Each comparison is a single image: original on the left, generated illustration on the right.
 
-### Portrait
-
-![Portrait: original photograph on the left and generated pixel illustration on the right](examples/person-comparison.png)
-
 ### Pet
 
 ![Pet: original photo on the left and generated pixel illustration on the right](examples/cat-comparison.png)
@@ -41,11 +37,11 @@ The assistant can also write a prompt based on the input image. Exact dimensions
 
 ## Install in Codex
 
-Once this repository is published, give its URL to Codex and ask:
+Give this repository URL to Codex and ask:
 
 > Install this GitHub repository as a skill.
 
-Alternatively, clone it into your personal skills directory once the repository exists:
+Alternatively, clone it into your personal skills directory:
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
@@ -83,9 +79,6 @@ y2k-pixel-doodle/
 ├── agents/
 │   └── openai.yaml
 ├── examples/
-│   ├── person.png
-│   ├── person-original.png
-│   ├── person-comparison.png
 │   ├── cat.png
 │   ├── cat-original.jpg
 │   ├── cat-comparison.png

@@ -10,10 +10,6 @@
 
 每组对照图都是一张完整图片：左边是原图，右边是对应的生成插画。
 
-### 人物
-
-![人物对照：左侧原图，右侧生成的像素插画](examples/person-comparison.png)
-
 ### 动物
 
 ![动物对照：左侧猫咪原图，右侧生成的像素插画](examples/cat-comparison.png)
@@ -41,11 +37,11 @@
 
 ## 安装到 Codex
 
-仓库发布后，可以把 GitHub 地址发给 Codex，并输入：
+可以把本仓库的 GitHub 地址发给 Codex，并输入：
 
 > 请把这个 GitHub 仓库安装为 Skill。
 
-仓库创建完成后，也可以通过命令克隆到个人 Skill 目录：
+也可以通过命令克隆到个人 Skill 目录：
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
@@ -83,9 +79,6 @@ y2k-pixel-doodle/
 ├── agents/
 │   └── openai.yaml
 ├── examples/
-│   ├── person.png
-│   ├── person-original.png
-│   ├── person-comparison.png
 │   ├── cat.png
 │   ├── cat-original.jpg
 │   ├── cat-comparison.png
