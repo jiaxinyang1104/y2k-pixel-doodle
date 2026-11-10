@@ -29,43 +29,44 @@ Each comparison is a single image: original on the left, generated illustration 
 
 Explicit instructions override these defaults. For example, you can request a plain white background without decorations or specify a different aspect ratio.
 
-## Requirements
+## Requirements and agent support
 
-To create an illustration directly, use an AI environment that can inspect an input image and access an image-generation or image-editing tool. The skill is a set of instructions; it does not include an image model.
+This skill uses the [Agent Skills format](https://agentskills.io/specification). One `SKILL.md` contains the shared visual rules; installation and available image tools vary by host.
 
-The assistant can also write a prompt based on the input image. Exact dimensions and final file export depend on the host environment and its available tools.
+- **Illustration mode:** the host must inspect the source image and have a generation/editing tool that accepts reference images.
+- **Prompt mode:** with image understanding but no suitable generation tool, the assistant returns a tailored prompt and known image dimensions, and states that no image was generated.
+- **Description-only mode:** without image understanding, the assistant can use your written description but cannot verify the photo's contents.
+- The skill includes no image model, API account, or generation service. Installing it does not add those capabilities. Different models may render the same rules differently.
 
-## Install in Codex
+Installation instructions are provided for **Codex, WorkBuddy, Doubao Work, Qoder, and the open-source MiniMax Code CLI**. MiniMax Code desktop import details remain unverified. These are documented installation routes, not a claim that this revision has been tested end to end in every product. See the [compatibility and test record](docs/compatibility.md).
 
-Give this repository URL to Codex and ask:
+## Installation
 
-> Install this GitHub repository as a skill.
+Follow the [installation guide / 安装指南](docs/installation.md) for your agent. It covers local package import, CLI directories, updates, and invocation.
 
-Alternatively, clone it into your personal skills directory:
+For Codex, you can give the repository URL to the assistant:
 
-```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-git clone https://github.com/jiaxinyang1104/y2k-pixel-doodle.git \
-  "${CODEX_HOME:-$HOME/.codex}/skills/y2k-pixel-doodle"
-```
+> Install https://github.com/jiaxinyang1104/y2k-pixel-doodle as a skill.
 
-If the destination already exists, `git clone` will stop rather than overwrite it. Check the existing skill before updating it.
+Other agents may require importing a local skill package rather than accepting a GitHub link. A GitHub repository is the distribution source; marketplace listing is separate.
 
 ## Usage
 
-Start a new Codex conversation, attach an image, and invoke the skill by name.
+Start a new task in your agent, attach an image, and invoke the installed skill by name. Natural-language invocation is portable; menu and slash-command support depends on the host.
 
 **Generate an illustration**
 
-> Use `$y2k-pixel-doodle` to turn this photo into a white-background pixel doodle. Keep the pose and expression.
+> Use `y2k-pixel-doodle` to turn this photo into a white-background pixel doodle. Keep the pose and expression.
+
+Codex also accepts `$y2k-pixel-doodle`; use the host's skill picker or command when available.
 
 **Use a style reference**
 
-> Use `$y2k-pixel-doodle` to redraw image 1. Use image 2 as a reference for the pixel lines and colors.
+> Use `y2k-pixel-doodle` to redraw image 1. Use image 2 as a reference for the pixel lines and colors.
 
 **Write a prompt only**
 
-> Use `$y2k-pixel-doodle` to write an image-generation prompt for this photo.
+> Use `y2k-pixel-doodle` to write an image-generation prompt for this photo.
 
 **Adjust the defaults**
 
@@ -78,6 +79,9 @@ y2k-pixel-doodle/
 ├── SKILL.md
 ├── agents/
 │   └── openai.yaml
+├── docs/
+│   ├── installation.md
+│   └── compatibility.md
 ├── examples/
 │   ├── cat.png
 │   ├── cat-original.jpg
@@ -91,9 +95,12 @@ y2k-pixel-doodle/
 ```
 
 - `SKILL.md` contains the trigger description, visual rules, and workflow.
-- `agents/openai.yaml` provides the display name, summary, and example invocation for Codex.
+- `agents/openai.yaml` retains Codex display metadata; the shared workflow lives in `SKILL.md`.
+- `docs/installation.md` explains installation and invocation across agents in English and Chinese.
+- `docs/compatibility.md` separates documented support from actual testing and lists verification cases.
 - `examples/` contains source images, generated illustrations and side-by-side comparisons for the README. They are not required inputs for the skill.
 
 ## License
 
 The skill instructions and accompanying configuration are available under the [MIT License](LICENSE). Example images and their source materials may have separate rights; the publisher should confirm their permitted use before redistribution.
+
